@@ -1,0 +1,14 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.tmp
+*.temp
+
+# Archives in release dist
+# 03_Release_Dist/*.zip
+
+# OS
+Thumbs.db
+Desktop.ini
+.DS_Store
