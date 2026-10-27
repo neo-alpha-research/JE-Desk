@@ -26,9 +26,9 @@
 ---
 
 ## 3. 3단 시퀀스 카드뉴스 에셋 (1080x1080 정방형)
-1. **Cut 1 (Before - 수납 한계와 불편함)**: `ops/out\sample_living_card_hyper_01.png` (1,373,501 bytes)
-2. **Cut 2 (Install - 22cm 실측 검증)**: `ops/out\sample_living_card_hyper_02.png` (1,291,379 bytes)
-3. **Cut 3 (After - 6kg 실사용 정돈)**: `ops/out\sample_living_card_hyper_03.png` (1,381,398 bytes)
+1. **Cut 1 (Before - 수납 한계와 불편함)**: `ops/out\sample_living_card_hyper_01.png` (1,363,196 bytes)
+2. **Cut 2 (Install - 22cm 실측 검증)**: `ops/out\sample_living_card_hyper_02.png` (1,308,207 bytes)
+3. **Cut 3 (After - 6kg 실사용 정돈)**: `ops/out\sample_living_card_hyper_03.png` (1,387,959 bytes)
 
 ---
 
