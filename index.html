@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>🌸 JE-Desk 살림 꿀템 모바일 뷰어</title>
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <style>
+        :root {
+            --primary: #FF5A5F;
+            --primary-light: #FFF0F0;
+            --bg: #F8F9FA;
+            --card-bg: #FFFFFF;
+            --text-main: #191F28;
+            --text-sub: #6B7684;
+            --text-muted: #8B95A1;
+            --border: #E5E8EB;
+            --radius-lg: 20px;
+            --radius-md: 14px;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, sans-serif; }
+        body { background: var(--bg); color: var(--text-main); line-height: 1.6; padding-bottom: 60px; -webkit-font-smoothing: antialiased; }
+        
+        .header { background: #FFFFFF; padding: 20px 24px; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; backdrop-filter: blur(10px); background: rgba(255, 255, 255, 0.95); }
+        .header-top { display: flex; align-items: center; justify-content: space-between; }
+        .logo { font-size: 20px; font-weight: 800; color: var(--primary); display: flex; align-items: center; gap: 6px; }
+        .tag { font-size: 12px; font-weight: 700; background: var(--primary-light); color: var(--primary); padding: 4px 10px; border-radius: 20px; }
+        
+        .container { max-width: 680px; margin: 0 auto; padding: 20px 16px; }
+        
+        .hero-title { font-size: 22px; font-weight: 800; color: #111; margin: 12px 0 6px; letter-spacing: -0.5px; }
+        .hero-desc { font-size: 14px; color: var(--text-sub); margin-bottom: 24px; }
+        
+        .section-card { background: var(--card-bg); border-radius: var(--radius-lg); padding: 24px; margin-bottom: 24px; border: 1px solid var(--border); box-shadow: 0 4px 16px rgba(0,0,0,0.03); }
+        .section-title { font-size: 17px; font-weight: 700; color: #111; margin-bottom: 16px; display: flex; align-items: center; justify-content: space-between; }
+        
+        /* 3단 카드 갤러리 */
+        .card-gallery { display: flex; gap: 14px; overflow-x: auto; padding-bottom: 12px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
+        .card-gallery::-webkit-scrollbar { height: 6px; }
+        .card-gallery::-webkit-scrollbar-thumb { background: #D1D6DB; border-radius: 10px; }
+        .card-item { min-width: 280px; max-width: 320px; flex: 1; scroll-snap-align: center; border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--border); background: #FFF; }
+        .card-item img { width: 100%; height: auto; display: block; }
+        .card-caption { padding: 12px 14px; background: #FFF; font-size: 13px; font-weight: 600; color: var(--text-main); border-top: 1px solid #F2F4F6; }
+        .card-subcap { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+
+        /* 복사 배너 */
+        .copy-banner { background: #F9FAFB; border: 1px solid var(--border); border-radius: var(--radius-md); padding: 14px 16px; margin-bottom: 16px; display: flex; align-items: center; justify-content: space-between; }
+        .copy-banner span { font-size: 13px; font-weight: 600; color: #333; }
+        .btn-copy { background: #191F28; color: white; border: none; padding: 8px 16px; border-radius: 10px; font-size: 13px; font-weight: 700; cursor: pointer; transition: all 0.2s; }
+        .btn-copy:active { transform: scale(0.96); background: #333D4B; }
+        
+        .content-box { background: #F8F9FA; border: 1px solid #E5E8EB; border-radius: var(--radius-md); padding: 16px; font-size: 14px; line-height: 1.7; color: #333D4B; white-space: pre-wrap; word-break: break-all; }
+        
+        .btn-action { display: block; width: 100%; text-align: center; background: var(--primary); color: white; text-decoration: none; padding: 16px; border-radius: var(--radius-md); font-size: 16px; font-weight: 700; margin-top: 16px; box-shadow: 0 4px 12px rgba(255, 90, 95, 0.25); }
+        
+        /* 토스트 팝업 */
+        .toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); background: rgba(25, 31, 40, 0.95); color: white; padding: 12px 24px; border-radius: 30px; font-size: 14px; font-weight: 600; opacity: 0; transition: opacity 0.3s; pointer-events: none; z-index: 1000; box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+        .toast.show { opacity: 1; }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-top">
+            <div class="logo">🌸 JE-Desk</div>
+            <span class="tag">아내 전용 모바일 뷰어</span>
+        </div>
+    </header>
+
+    <div class="container">
+        <h1 class="hero-title">싱크대 하부장 슬라이딩 선반 3주 솔직후기</h1>
+        <p class="hero-desc">다이소에서 3번 무너지고 결국 정착한 22cm 틈새 레일 선반 패키지</p>
+
+        <!-- 1. 오늘의집 감성 카드뉴스 갤러리 -->
+        <div class="section-card">
+            <div class="section-title">
+                <span>🖼️ 3단 시퀀스 카드뉴스</span>
+                <span style="font-size: 12px; color: var(--primary); font-weight: 600;">옆으로 넘겨보기 👉</span>
+            </div>
+            <div class="card-gallery">
+                <div class="card-item">
+                    <img src="ops/out/sample_living_card_hyper_01.png" alt="Cut 1 Before">
+                    <div class="card-caption">Cut 1 · SPATIAL FRICTION</div>
+                    <div class="card-subcap">배수관이 삼켜버린 22cm 버려지던 틈새</div>
+                </div>
+                <div class="card-item">
+                    <img src="ops/out/sample_living_card_hyper_02.png" alt="Cut 2 Install">
+                    <div class="card-caption">Cut 2 · PRECISION FIT</div>
+                    <div class="card-subcap">1px 초정밀 엔지니어링 실측 & 흡착판</div>
+                </div>
+                <div class="card-item">
+                    <img src="ops/out/sample_living_card_hyper_03.png" alt="Cut 3 After">
+                    <div class="card-caption">Cut 3 · KINETIC CAPACITY</div>
+                    <div class="card-subcap">대용량 6kg 볼베어링 부드러운 슬라이딩</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. 스레드 4-Beat 바이럴 카루셀 -->
+        <div class="section-card">
+            <div class="section-title">
+                <span>📱 스레드(Threads) 배포 원고</span>
+            </div>
+            <div class="copy-banner">
+                <span>📱 스레드 4-Beat 본문 (슬라이드 1~4)</span>
+                <button class="btn-copy" onclick="copyContent('threadsPostText')">📋 본문 복사</button>
+            </div>
+            <div id="threadsPostText" class="content-box">5천원짜리 선반 3번 무너지고 1만5천원 날린 사람이 결국 정착한 22cm 하부장 선반 🧵 (타래)
+(제휴 링크 포함 / 3주간 실제 사용 검증)
+
+매번 간장통 꺼내려고 쭈그려 앉아서 앞 물건 다 끄집어내는 분들,
+하부장 문 열고 배수관 옆 빈 폭 재서 '숫자만' 답글로 남겨주세요!
+들어가는 규격인지 바로 확인해 드림 👇
+
+---
+(타래 2)
+배수관 호스 때문에 일반 사각 바구니는 안 들어가고, 플라스틱 선반은 조금만 무거운 오일병 올리면 선반 통째로 휘청거리잖아요 😭
+
+안쪽 소스는 보이지도 않아서 유통기한 지나 버린 게 한두 개가 아니었음...
+
+---
+(타래 3)
+가로 22cm 슬림핏이라 배수관 옆 틈새에 맞춤처럼 쏙 들어감.
+하단에 1.8L 진간장 2통 + 식용유 올려서 총 6kg인데도 서랍 한 손으로 스르륵 부드럽게 빠져나오는 쾌감 ✨
+
+대신 솔직한 단점 하나: 하단 유효높이 28cm라 업소용 대용량 통은 세워서 안 들어감.
+가격은 2만3천원대. 5천원짜리 세 번 산 거 생각하면 진작 정착할 걸 그랬음.
+
+---
+(타래 4)
+프라이팬 불 올리고 소스 1초 만에 꺼내 쓰니까 조리 동선 완전 단축되고 하부장 수납공간 체감상 2배 이상 넓어짐 ✨
+
+어설픈 저가형 여러 번 바꾸지 말고 처음부터 레일형으로 정착하는 걸 추천해요.
+우리 집 하부장에 맞는지 궁금하시면 위 1번 글에 배수관 옆 치수 남겨주세요! (실시간 답글 중)</div>
+
+            <div class="copy-banner" style="margin-top: 16px;">
+                <span>💬 첫 번째 고정 댓글 (안전 좌표)</span>
+                <button class="btn-copy" onclick="copyContent('threadsCommentText')">📋 댓글 복사</button>
+            </div>
+            <div id="threadsCommentText" class="content-box">💡 [22cm 슬라이딩 선반 정품 확인 좌표]
+(폭 25cm 이상 공간 안 나오면 사지 마세요, 안 들어갑니다!)
+👉 https://ohou.se/productions/2284910?affect_type=Curator&affect_id=ORCA_CURATOR_2026
+
+※ 오늘의집 큐레이터 (Ohouse Curator) 활동의 일환으로 일정액의 수수료를 제공받을 수 있습니다.</div>
+        </div>
+
+        <!-- 3. 네이버 블로그 감성 원고 -->
+        <div class="section-card">
+            <div class="section-title">
+                <span>📝 네이버 블로그 1,500자 원고</span>
+            </div>
+            <div class="copy-banner">
+                <span>📝 6단계 자가퇴고(96점) 통과 본문</span>
+                <button class="btn-copy" onclick="copyContent('blogPostText')">📋 블로그 복사</button>
+            </div>
+            <div id="blogPostText" class="content-box">매번 요리할 때마다 싱크대 문 열고 저 안쪽에 박혀있는 양념통 꺼내느라 허리 굽히고 뒤적거리던 분들 계시죠? 다이소에서 5천 원짜리 바구니 샀다가 3번이나 무너지고 대참사를 겪었거든요.
+
+이번에 22cm 틈새 슬라이딩 선반으로 바꾸고 3주 동안 써봤는데 진짜 신세계더라고요.
+
+하단 바스켓에 1.8L 대용량 간장 2병이랑 식용유까지 총 6.0kg을 올려도 서랍을 한 손으로 툭 당기면 스르륵 부드럽게 빠져나옵니다. 볼트 4개만 손으로 조이면 5분 만에 완성되고 바닥 흡착판이 있어서 앞으로 꼬꾸라질 걱정도 전혀 없어요.
+
+양념 국물이 묻어도 물티슈로 쓱 닦아내면 1초 만에 깨끗해지니까 살림이 너무 편해졌어요.
+
+대신 솔직한 단점 하나! 하단 유효 높이가 28cm라 아주 큰 대용량 통은 세워서 안 들어가니, 사기 전에 줄자로 하부장 높이 꼭 1분만 재보세요.
+
+> 💡 혹시 저처럼 하부장 배수관 때문에 고민이셨던 분들 계실까 봐, 제가 3주간 써본 22cm 규격 정품 정보 남겨둘게요!
+👉 [싱크대 슬라이딩 틈새선반 규격별 실시간 재고 확인하기](https://ohou.se/productions/2284910?affect_type=Curator&affect_id=ORCA_CURATOR_2026)</div>
+
+            <a href="https://ohou.se/productions/2284910?affect_type=Curator&affect_id=ORCA_CURATOR_2026" target="_blank" class="btn-action">
+                👉 오늘의집 상품 페이지 직접 확인하기
+            </a>
+        </div>
+    </div>
+
+    <div id="toast" class="toast">클립보드에 복사되었습니다! 🌸</div>
+
+    <script>
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            toast.innerText = msg || '클립보드에 복사되었습니다! 🌸';
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 2000);
+        }
+
+        function copyContent(elementId) {
+            const text = document.getElementById(elementId).innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                showToast('클립보드에 복사되었습니다! 🌸');
+            });
+        }
+    </script>
+</body>
+</html>
