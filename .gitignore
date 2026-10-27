@@ -5,8 +5,8 @@ __pycache__/
 *.tmp
 *.temp
 
-# Archives in release dist
-# 03_Release_Dist/*.zip
+# Legacy archives
+ops/archive_legacy/
 
 # OS
 Thumbs.db

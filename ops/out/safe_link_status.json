@@ -1,0 +1,29 @@
+{
+  "product_name": "22cm 슬라이딩 하부장 싱크대 선반",
+  "active_platform_key": "Ohouse",
+  "active_platform_name": "오늘의집 큐레이터 (Ohouse Curator)",
+  "active_url": "https://ohou.se/productions/2284910?affect_type=Curator&affect_id=ORCA_CURATOR_2026",
+  "active_commission": "5.0% ~ 8.0% (기본 6.0%)",
+  "failover_triggered": false,
+  "decision_reason": "1순위 추천 플랫폼 정상 작동 (정상 재고 유지)",
+  "health_checks": {
+    "Ohouse": {
+      "url": "https://ohou.se/productions/2284910?affect_type=Curator&affect_id=ORCA_CURATOR_2026",
+      "platform": "Ohouse",
+      "status_code": 200,
+      "is_healthy": true,
+      "is_out_of_stock": false,
+      "latency_ms": 12,
+      "message": "Mock Verified Healthy (Sample/Active Campaign)"
+    },
+    "Coupang": {
+      "url": "https://link.coupang.com/a/ORCA_COUPANG_PROMO",
+      "platform": "Coupang",
+      "status_code": 200,
+      "is_healthy": true,
+      "is_out_of_stock": false,
+      "latency_ms": 12,
+      "message": "Mock Verified Healthy (Sample/Active Campaign)"
+    }
+  }
+}

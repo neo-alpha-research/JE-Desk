@@ -1,0 +1,54 @@
+{
+  "product_name": "22cm 슬라이딩 하부장 싱크대 선반",
+  "category": "주방/수납/살림",
+  "best_platform": "오늘의집 큐레이터 (Ohouse Curator)",
+  "secondary_platform": "쿠팡 파트너스 (Coupang Partners)",
+  "recommendation_summary": "'22cm 슬라이딩 하부장 싱크대 선반' 상품은 '오늘의집 큐레이터 (Ohouse Curator)'의 주력 타깃 카테고리와 일치하며, 5.0% ~ 8.0% (기본 6.0%)의 고수수료 혜택이 제공됩니다. 차선책(대체 옵션)으로는 로켓배송 전환율을 보장하는 '쿠팡 파트너스 (Coupang Partners)'을 복합 추천합니다.",
+  "links": {
+    "Ohouse": {
+      "platform_name": "오늘의집 큐레이터 (Ohouse Curator)",
+      "commission_rate": "5.0% ~ 8.0% (기본 6.0%)",
+      "affiliate_url": "https://ohou.se/productions/2284910?affect_type=Curator&affect_id=ORCA_CURATOR_2026",
+      "priority_badge": "1순위 (추천)",
+      "is_primary": true,
+      "is_secondary": false,
+      "strengths": "2040 여성·주부 인테리어 감성 신뢰도 1위, 고단가 수납/가구군 5~8% 고수수료"
+    },
+    "OliveYoung": {
+      "platform_name": "올리브영 셔터/제휴 (OliveYoung Affiliate)",
+      "commission_rate": "4.0% ~ 7.0% (기본 5.0%)",
+      "affiliate_url": "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.oy?goodsNo=A00000019284&trackingCd=ORCA_OY_PARTNER",
+      "priority_badge": "일반",
+      "is_primary": false,
+      "is_secondary": false,
+      "strengths": "올영세일 기간 폭발적 트래픽, 2030 여성 구매 전환율 1위, 오프라인 매장 인지도 결합"
+    },
+    "KakaoGift": {
+      "platform_name": "카카오 선물하기 크리에이터 (Kakao Gift Creator)",
+      "commission_rate": "4.0% ~ 6.0% (기본 4.5%)",
+      "affiliate_url": "https://gift.kakao.com/product/849201?ref=ORCA_KAKAO_CREATOR",
+      "priority_badge": "일반",
+      "is_primary": false,
+      "is_secondary": false,
+      "strengths": "지인 선물·생일 1초 간편 결제, 높은 객단가 및 반품률 0%에 수렴하는 전환 구조"
+    },
+    "NaverConnect": {
+      "platform_name": "네이버 쇼핑 커넥트 (Naver Shopping Connect)",
+      "commission_rate": "4.0% ~ 8.0% (기본 5.0%)",
+      "affiliate_url": "https://cr.shopping.naver.com/adcr.nhn?x=ORCA_NAVER_CONNECT_2026&nvMid=98234190",
+      "priority_badge": "일반",
+      "is_primary": false,
+      "is_secondary": false,
+      "strengths": "네이버 블로그/모바일 홈판 인앱 원클릭 N페이 결제, 네이버 알고리즘 가산점 연계"
+    },
+    "Coupang": {
+      "platform_name": "쿠팡 파트너스 (Coupang Partners)",
+      "commission_rate": "3.0% (고정)",
+      "affiliate_url": "https://link.coupang.com/a/ORCA_COUPANG_PROMO",
+      "priority_badge": "2순위 (대체)",
+      "is_primary": false,
+      "is_secondary": true,
+      "strengths": "익일 새벽 로켓배송 보장, 최다 SKU, 구매 허들이 가장 낮은 전 국민 결제 인프라"
+    }
+  }
+}
