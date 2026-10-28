@@ -17,6 +17,7 @@ import json
 import re
 import subprocess
 import urllib.parse
+import shutil
 from pathlib import Path
 
 # Force Windows stdout/stderr to UTF-8
@@ -37,7 +38,18 @@ SKILL_SCRIPT = SCRIPT_DIR.parent.parent / ".agents" / "skills" / "academic-paper
 sys.path.insert(0, str(SKILL_SCRIPT.parent))
 from paper_deconstructor import ingest_paper_to_vaults
 
-AGY_BIN = r"C:\Users\kibae\AppData\Local\agy\bin\agy.EXE"
+
+def get_agy_bin() -> str:
+    """Dynamically discovers Antigravity CLI binary across any user environment (Zero-Hardcoding)."""
+    which_bin = shutil.which("agy")
+    if which_bin and os.path.exists(which_bin):
+        return which_bin
+    local_app = os.environ.get("LOCALAPPDATA") or str(Path.home() / "AppData" / "Local")
+    candidate = Path(local_app) / "agy" / "bin" / "agy.exe"
+    return str(candidate)
+
+
+AGY_BIN = get_agy_bin()
 
 
 def translate_to_academic_keywords(query: str) -> str:

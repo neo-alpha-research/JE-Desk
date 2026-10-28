@@ -446,12 +446,17 @@ def ingest_paper_to_vaults(query_or_url: str, max_pdf_pages: int = 50) -> dict:
     cache_dir = Path("ops/cache/pdf")
     cache_dir.mkdir(parents=True, exist_ok=True)
     
-    # Obsidian Vault folder
-    obsidian_vault = Path(r"D:\Obsidian\내 회사 허브\지식_보관함\논문_자산")
-    if obsidian_vault.parent.exists():
-        obsidian_vault.mkdir(parents=True, exist_ok=True)
+    # Obsidian Vault folder (Dynamic Discovery: ENV -> Cockpit fallback -> Local workspace fallback)
+    custom_vault = os.environ.get("OBSIDIAN_VAULT_PATH")
+    if custom_vault and Path(custom_vault).exists():
+        obsidian_vault = Path(custom_vault) / "지식_보관함" / "논문_자산"
     else:
-        obsidian_vault = None
+        default_vault = Path(r"D:\Obsidian\내 회사 허브\지식_보관함\논문_자산")
+        if default_vault.parent.exists():
+            obsidian_vault = default_vault
+        else:
+            obsidian_vault = out_dir / "vault_inbox"
+    obsidian_vault.mkdir(parents=True, exist_ok=True)
 
     # 3. PDF Download & Full-Text Conversion
     pdf_url = paper_data.get("pdf_url")

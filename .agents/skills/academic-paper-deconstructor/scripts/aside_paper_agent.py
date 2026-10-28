@@ -16,11 +16,13 @@ import os
 import sys
 import json
 import re
+import shutil
 import subprocess
 import urllib.request
 import urllib.parse
 import hashlib
 import xml.etree.ElementTree as ET
+from pathlib import Path
 from datetime import datetime
 
 # Fix Windows console encoding
@@ -31,7 +33,18 @@ if sys.platform == 'win32' and hasattr(sys.stdout, 'reconfigure'):
     except Exception:
         pass
 
-ASIDE_BIN = r"C:\Users\kibae\AppData\Local\Aside\CLI\current\aside.exe"
+
+def get_aside_bin() -> str:
+    """Dynamically discovers Aside CLI binary across any user environment (Zero-Hardcoding)."""
+    which_bin = shutil.which("aside")
+    if which_bin and os.path.exists(which_bin):
+        return which_bin
+    local_app = os.environ.get("LOCALAPPDATA") or str(Path.home() / "AppData" / "Local")
+    candidate = Path(local_app) / "Aside" / "CLI" / "current" / "aside.exe"
+    return str(candidate)
+
+
+ASIDE_BIN = get_aside_bin()
 
 
 def run_aside_prompt(prompt: str, effort: str = "medium", timeout_sec: int = 180) -> str:

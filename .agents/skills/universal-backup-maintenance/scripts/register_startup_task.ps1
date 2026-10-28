@@ -1,4 +1,4 @@
-# Register Startup & Weekly Maintenance Task in Windows Task Scheduler
+﻿# Register Startup & Weekly Maintenance Task in Windows Task Scheduler
 # Designed to run on ANY Windows PC without hardcoded paths
 [CmdletBinding()]
 param (
@@ -30,7 +30,7 @@ if (-not $pythonExe) {
         "$env:LOCALAPPDATA\Programs\Python\Python311\python.exe",
         "$env:LOCALAPPDATA\Programs\Python\Python312\python.exe",
         "$env:ProgramFiles\Python311\python.exe",
-        "C:\Python311\python.exe"
+        "$env:SystemDrive\Python311\python.exe"
     )
     foreach ($p in $commonPy) {
         if (Test-Path $p) { $pythonExe = $p; break }
